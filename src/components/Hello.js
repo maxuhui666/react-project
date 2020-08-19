@@ -1,6 +1,10 @@
 import React, {Fragment, Component} from "react";
+import {Button} from "antd";
+import http from '../http/http';
+import {dictionaryInfo} from '../http/Api';
 
 class Hello extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +14,11 @@ class Hello extends Component {
   }
 
   componentDidMount() {
+    http.get(dictionaryInfo.list, {}).then(response => {
+      console.log(response.data);
+    }).catch(error => {
+      console.log(error);
+    })
     console.log('组件加载完毕！');
   }
 
@@ -28,7 +37,7 @@ class Hello extends Component {
     return (
       <Fragment>
         {title}
-        <button onClick={this.handleClick}>点击</button>
+        <Button type={"primary"} onClick={this.handleClick}>点击</Button>
       </Fragment>
     )
   }
