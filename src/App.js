@@ -1,13 +1,22 @@
 import React, {Component, Fragment} from 'react';
+import Hello from "./components/Hello";
+import SliderMenu from "./components/SliderMenu";
+import {Row, Col} from "antd";
 import './App.scss';
 import 'antd/dist/antd.css';
-import Hello from "./components/Hello";
 
 class App extends Component {
   render() {
     return (
       <Fragment>
-        <Hello/>
+        <Row>
+          <Col span={6}>
+            <SliderMenu/>
+          </Col>
+          <Col span={17}>
+            <Hello/>
+          </Col>
+        </Row>
       </Fragment>
     )
   }
