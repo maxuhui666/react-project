@@ -1,18 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import './App.scss';
+import Hello from "./components/Hello";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: 'hello'
-    }
-  }
-
   render() {
     return (
       <Fragment>
-        {this.state.title}
+        <Hello/>
       </Fragment>
     )
   }
