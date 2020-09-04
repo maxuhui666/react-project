@@ -1,21 +1,19 @@
-import React, {Component} from 'react';
-import Hello from "./components/Hello";
+import React, {Component, Fragment} from 'react';
 import {Row, Col} from "antd";
-import store from "./store";
 import './App.scss';
 import 'antd/dist/antd.css';
-import {Provider} from "react-redux";
+import TodoList from "./todo-list/TodoList";
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <Fragment>
         <Row justify={'center'}>
           <Col>
-            <Hello/>
+            <TodoList/>
           </Col>
         </Row>
-      </Provider>
+      </Fragment>
     )
   }
 }
