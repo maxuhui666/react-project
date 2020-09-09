@@ -1,14 +1,31 @@
 import React, {Component, Fragment} from "react";
 import {Input} from "antd";
+import moment from "moment";
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: ['123', '132'],
-      inputValue: '5555'
+      inputValue: '5555',
+      now: ''
     }
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
+  }
+
+  componentDidMount() {
+    const date = new Date();
+    this.setState(() => {
+      return (
+        {
+          now: date.getTime()
+        }
+      )
+    })
+  }
+
+  dateFormat(time) {
+    return moment(time).format("YYYY-MM-DD HH:mm:ss")
   }
 
   /**
@@ -16,7 +33,6 @@ class TodoList extends Component {
    */
   onChangeInputValue(e) {
     const inputValue = e.target.value;
-    console.log(inputValue);
     this.setState(() => {
       return (
         {
@@ -24,15 +40,16 @@ class TodoList extends Component {
         }
       )
     }, () => {
-      console.log("更新完毕！");
+      console.log("Update Success！");
     })
   }
 
   render() {
-    const {list, inputValue} = this.state;
+    const {list, inputValue, now} = this.state;
     return (
       <Fragment>
         <div>
+          {this.dateFormat(now)}
           <Input type={'text'} value={inputValue} onChange={this.onChangeInputValue}/>
           <ul>
             {
