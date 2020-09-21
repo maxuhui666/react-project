@@ -1,21 +1,22 @@
-import React, {Component, Fragment} from "react";
-import {Button, Input} from "antd";
-import moment from "moment";
+import React, { Component, Fragment } from 'react'
+import { Button, Input } from 'antd'
+
+import moment from 'moment'
 
 class TodoList extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       list: ['123', '132'],
       inputValue: '5555',
       now: ''
     }
-    this.onChangeInputValue = this.onChangeInputValue.bind(this);
-    this.updateTime = this.updateTime.bind(this);
+    this.onChangeInputValue = this.onChangeInputValue.bind(this)
+    this.updateTime = this.updateTime.bind(this)
   }
 
-  componentDidMount() {
-    const date = new Date();
+  componentDidMount () {
+    const date = new Date()
     this.setState(() => {
       return (
         {
@@ -25,12 +26,12 @@ class TodoList extends Component {
     })
   }
 
-  dateFormat(time) {
-    return moment(time).format("YYYY-MM-DD HH:mm:ss")
+  dateFormat (time) {
+    return moment(time).format('YYYY-MM-DD HH:mm:ss')
   }
 
-  updateTime() {
-    const date = new Date();
+  updateTime () {
+    const date = new Date()
     this.setState(() => {
       return (
         {
@@ -38,12 +39,12 @@ class TodoList extends Component {
         }
       )
     }, () => {
-      console.log("UPDATE STATE SUCCESS!");
+      console.log('UPDATE STATE SUCCESS!')
     })
   }
 
-  onChangeInputValue(e) {
-    const inputValue = e.target.value;
+  onChangeInputValue (e) {
+    const inputValue = e.target.value
     this.setState(() => {
       return (
         {
@@ -51,12 +52,12 @@ class TodoList extends Component {
         }
       )
     }, () => {
-      console.log("UPDATE STATE SUCCESS!");
+      console.log('UPDATE STATE SUCCESS!')
     })
   }
 
-  render() {
-    const {list, inputValue, now} = this.state;
+  render () {
+    const { list, inputValue, now } = this.state
     return (
       <Fragment>
         <div>
@@ -76,4 +77,4 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+export default TodoList

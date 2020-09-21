@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from 'react'
 
 class SliderMenu extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       options: [
         '首页',
@@ -12,8 +12,8 @@ class SliderMenu extends Component {
     }
   }
 
-  render() {
-    const {options} = this.state;
+  render () {
+    const { options } = this.state
     return (
       <Fragment>
         <ul>
@@ -30,5 +30,4 @@ class SliderMenu extends Component {
   }
 }
 
-
-export default SliderMenu;
+export default SliderMenu

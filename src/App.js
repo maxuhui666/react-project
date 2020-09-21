@@ -1,21 +1,19 @@
-import React, {Component, Fragment} from 'react';
-import {Row, Col} from "antd";
-import './App.scss';
-import 'antd/dist/antd.css';
-import TodoList from "./todo-list/TodoList";
+import React, { Component } from 'react'
+import { Row, Col } from 'antd'
+import './App.scss'
+import 'antd/dist/antd.css'
+import TodoList from './todo-list/TodoList'
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <Fragment>
-        <Row justify={'center'}>
-          <Col>
-            <TodoList/>
-          </Col>
-        </Row>
-      </Fragment>
+      <Row justify="center">
+        <Col>
+          <TodoList/>
+        </Col>
+      </Row>
     )
   }
 }
 
-export default App;
+export default App
