@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import {Input} from "antd";
+import {Button, Input} from "antd";
 import moment from "moment";
 
 class TodoList extends Component {
@@ -11,6 +11,7 @@ class TodoList extends Component {
       now: ''
     }
     this.onChangeInputValue = this.onChangeInputValue.bind(this);
+    this.updateTime = this.updateTime.bind(this);
   }
 
   componentDidMount() {
@@ -28,9 +29,19 @@ class TodoList extends Component {
     return moment(time).format("YYYY-MM-DD HH:mm:ss")
   }
 
-  /**
-   * 修改输入框的值
-   */
+  updateTime() {
+    const date = new Date();
+    this.setState(() => {
+      return (
+        {
+          now: date.getTime()
+        }
+      )
+    }, () => {
+      console.log("UPDATE STATE SUCCESS!");
+    })
+  }
+
   onChangeInputValue(e) {
     const inputValue = e.target.value;
     this.setState(() => {
@@ -40,7 +51,7 @@ class TodoList extends Component {
         }
       )
     }, () => {
-      console.log("Update Success！");
+      console.log("UPDATE STATE SUCCESS!");
     })
   }
 
@@ -49,14 +60,13 @@ class TodoList extends Component {
     return (
       <Fragment>
         <div>
-          {this.dateFormat(now)}
+          <p>现在时间是：{this.dateFormat(now)}</p>
+          <Button type={'primary'} onClick={this.updateTime}>更新时间</Button>
           <Input type={'text'} value={inputValue} onChange={this.onChangeInputValue}/>
           <ul>
             {
               list.map((item, index) => {
-                return (
-                  <li key={index}>{item},</li>
-                )
+                return (<li key={index}>{item},</li>)
               })
             }
           </ul>
