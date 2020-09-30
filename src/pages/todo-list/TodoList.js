@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { Button, Input, message, List, Avatar } from 'antd'
+import { Button, Input, message, List, Avatar, Row, Col } from 'antd'
 import './TodoList.scss'
 
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 class TodoList extends Component {
   constructor (props) {
@@ -26,14 +27,10 @@ class TodoList extends Component {
   }
 
   updateTime () {
-    this.setState(() => {
-      return (
-        {
-          item: {
-            time: new Date().getTime()
-          }
-        }
-      )
+    this.setState({
+      item: {
+        time: new Date().getTime()
+      }
     }, () => {
       console.log('UPDATE STATE SUCCESS!')
     })
@@ -52,17 +49,12 @@ class TodoList extends Component {
         return
       }
     }
-
     list.push(this.state.item)
-    this.setState(() => {
-      return (
-        {
-          list: list,
-          item: {
-            content: ''
-          }
-        }
-      )
+    this.setState({
+      list: list,
+      item: {
+        content: ''
+      }
     }, () => {
       console.log('ADD SUCCESS!')
     })
@@ -70,15 +62,11 @@ class TodoList extends Component {
 
   onChangeContent (e) {
     const content = e.target.value
-    this.setState(() => {
-      return (
-        {
-          item: {
-            time: new Date().getTime(),
-            content: content
-          }
-        }
-      )
+    this.setState({
+      item: {
+        time: new Date().getTime(),
+        content: content
+      }
     }, () => {
       console.log('UPDATE STATE SUCCESS!')
     })
@@ -87,10 +75,8 @@ class TodoList extends Component {
   deleteItem (index) {
     const list = this.state.list
     list.splice(index, 1)
-    this.setState(() => {
-      return ({
-        list: list
-      })
+    this.setState({
+      list: list
     }, () => {
       message.success('删除成功！')
     })
@@ -100,22 +86,27 @@ class TodoList extends Component {
     const { list, item } = this.state
     return (
       <Fragment>
-        <div>
-          <p>现在时间是：{this.dateFormat(item.time)}</p>
-          <Button type={'primary'} onClick={this.updateTime}>更新时间</Button>
-          <Input type={'text'} value={item.content} onChange={this.onChangeContent}/> <Button
-            type={'primary'} onClick={this.addList}>新增</Button>
-          <List itemLayout={'horizontal'} dataSource={list} renderItem={item => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
-                title={<a href="https://ant.design">{item.content}</a>}
-                description={item.content}
-              />
-            </List.Item>
-          )}>
-          </List>
-        </div>
+        <Row justify="center">
+          <Col>
+            <div>
+              <p>现在时间是：{this.dateFormat(item.time)}</p>
+              <Button type={'primary'} onClick={this.updateTime}>更新时间</Button>
+              <Link to={'/home'}><Button type={'primary'} >回首页</Button></Link>
+              <Input type={'text'} value={item.content} onChange={this.onChangeContent}/>
+              <Button type={'primary'} onClick={this.addList}>新增</Button>
+              <List itemLayout={'horizontal'} dataSource={list} renderItem={(item, index) => (
+                <List.Item onClick={this.deleteItem.bind(index)}>
+                  <List.Item.Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
+                    title={<p>{item.content}</p>}
+                    description={item.content}
+                  />
+                </List.Item>
+              )}>
+              </List>
+            </div>
+          </Col>
+        </Row>
       </Fragment>
     )
   }

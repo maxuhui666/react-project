@@ -1,24 +1,27 @@
 import React, { Component, Fragment } from 'react'
-import { Row, Col } from 'antd'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import Home from './pages/home/Home'
+import TodoList from './pages/todo-list/TodoList'
+import Login from './pages/login/Login'
 import './App.scss'
 import 'antd/dist/antd.css'
-import TodoList from './todo-list/TodoList'
-import Login from './login/Login'
 
 class App extends Component {
   render () {
     return (
       <Fragment>
-        <Row justify="center">
-          <Col>
+        <BrowserRouter>
+          <Redirect form={'/'} to='/home'/>
+          <Route path={'/home'} exact>
+            <Home/>
+          </Route>
+          <Route path={'/todo-list'} exact>
             <TodoList/>
-          </Col>
-        </Row>
-        <Row justify="center">
-          <Col>
+          </Route>
+          <Route path={'/login'} exact>
             <Login/>
-          </Col>
-        </Row>
+          </Route>
+        </BrowserRouter>
       </Fragment>
     )
   }
